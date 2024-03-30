@@ -3,7 +3,7 @@
 # импортируем библиотеку streamlit
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 
 # заголовок приложения
@@ -50,25 +50,30 @@ st.subheader('Status Space Mission Launches')
 
 mission_counts = df['Mission_Status'].value_counts()
 
-status_names = mission_counts
-status_counts = mission_counts.tolist()
-# st.write(status_names)
 st.write(mission_counts)
 
-index_list = mission_counts.index.tolist()[0:3]
-status_counts = mission_counts.tolist()[0:3]
+#chart_data = pd.DataFrame(np.random.randn(20, 3), columns=["a", "b", "c"])
+chart_data = sorted(mission_counts,reverse=True)
+st.bar_chart(chart_data)
 
 
+# status_names = mission_counts
+# status_counts = mission_counts.tolist()
+# # st.write(status_names)
+#
+#
+# index_list = mission_counts.index.tolist()[0:3]
+# status_counts = mission_counts.tolist()[0:3]
 
-# создаем круговую диаграмму
-fig, ax = plt.subplots()
-# задаем размер круговой диаграммы
-plt.figure(figsize=(8, 6))
-ax.pie(status_counts, labels=index_list, autopct='%1.1f%%', startangle=90)
-ax.axis('equal')
-
-# отображаем круговую диаграмму в Streamlit
-st.pyplot(fig)
+# # создаем круговую диаграмму
+# fig, ax = plt.subplots()
+# # задаем размер круговой диаграммы
+# plt.figure(figsize=(8, 6))
+# ax.pie(status_counts, labels=index_list, autopct='%1.1f%%', startangle=90)
+# ax.axis('equal')
+#
+# # отображаем круговую диаграмму в Streamlit
+# st.pyplot(fig)
 
 
 
